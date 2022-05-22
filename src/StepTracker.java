@@ -10,15 +10,13 @@ public class StepTracker {
     Converter converter = new Converter();
 
     void saveSteps(int month, int day, int steps) {
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                data[month][day - 1] = steps;
-                if (steps < 0) {
-                    steps = 0;
-                    System.out.println("Количество пройденных шагов не может быть отрицательным! " +
-                            "Повторите ввод!");
-                    return;
-                }
+        for (int j = 0; j < data[month].length; j++) {
+            data[month][day - 1] = steps;
+            if (steps < 0) {
+                steps = 0;
+                System.out.println("Количество пройденных шагов не может быть отрицательным! " +
+                        "Повторите ввод!");
+                return;
             }
         }
     }
@@ -26,53 +24,35 @@ public class StepTracker {
     void getStatistics(int month) { // количество пройденных шагов по дням
         sumSteps = 0; /* обнулил счетчик шагов, чтобы не прибавлялось сохраненное в sumSteps
                       значение при вызове метода getStatistics();*/
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                if (i == month) {
-                    System.out.print(j + 1 + " день: " + data[i][j] + ", ");
-                }
-            }
+        for (int j = 0; j < data[month].length; j++) {
+            System.out.print(j + 1 + " день: " + data[month][j] + ", ");
         }
         System.out.println(); //перенос строки для печати меню
 
-        for (int i = 0; i < data.length; i++) { // общее количество шагов за месяц
-            for (int j = 0; j < data[i].length; j++) {
-                if (i == month) {
-                    sumSteps = sumSteps + data[i][j];
-                }
-            }
+         // общее количество шагов за месяц
+        for (int j = 0; j < data[month].length; j++) {
+            sumSteps = sumSteps + data[month][j];
         }
         System.out.println("Общее количество шагов за месяц: " + sumSteps);
 
-        for (int i = 0; i < data.length; i++) { // максимальное количество шагов
-            for (int j = 0; j < data[i].length; j++) {
-                if (i == month) {
-                    if (data[i][j] > maxSteps ) {
-                        maxSteps = data[i][j];
-                    }
-                }
+        // максимальное количество шагов
+        for (int j = 0; j < data[month].length; j++) {
+            if (data[month][j] > maxSteps ) {
+                maxSteps = data[month][j];
             }
         }
         System.out.println("Максимальное количество шагов в месяце: " + maxSteps);
 
-        for (int i = 0; i < data.length; i++) { // среднее количество шагов
-            for (int j = 0; j < data[i].length; j++) {
-                if (i == month) {
-                    averageSteps = sumSteps/data[i].length;
-                }
-            }
+        // среднее количество шагов
+        for (int j = 0; j < data[month].length; j++) {
+            averageSteps = sumSteps/data[month].length;
         }
         System.out.println("Среднее количество шагов в день за текущий месяц: " + averageSteps);
+
         converter.getDistance(sumSteps);
         converter.getCcal(sumSteps);
 
         //лучшая серия шагов
-        /* Уважаемый ревьюер, код написанный мной ниже по прежнему остается для меня магией =(
-        Решение с нахождением количества подряд идущих значений в массиве я нагуглил для одномерного массива и
-        "расширил" для двумерного. Попытки разобраться как это работает ни к чему не привели.
-        Если у тебя есть возможность напиши, пожалуйста, на пальцах как эта магия происходит.
-        */
-
         int lastConsequence = 0; //последняя последовательность
         int currentConsequence = 0; //текущая последовательность
         boolean prevElement = false; // предыдущий элемент?
