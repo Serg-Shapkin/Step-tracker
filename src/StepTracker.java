@@ -29,22 +29,19 @@ public class StepTracker {
             System.out.print("- за " + (i + 1) + " день выбранного месяца пройдено " + data[month][i] + " шагов. \n");
         }
 
-        // общее количество шагов за месяц
-        for (int i = 0; i < data[month].length; i++) {
+        for (int i = 0; i < data[month].length; i++) { // общее количество шагов за месяц
             sumSteps = sumSteps + data[month][i];
         }
         System.out.println("\n--- общее количество шагов за месяц: " + sumSteps);
 
-        // максимальное количество шагов
-        for (int i = 0; i < data[month].length; i++) {
+        for (int i = 0; i < data[month].length; i++) { // максимальное количество шагов
             if (data[month][i] > maxSteps ) {
                 maxSteps = data[month][i];
             }
         }
         System.out.println("--- максимальное количество шагов в месяце: " + maxSteps);
 
-        // среднее количество шагов
-        for (int i = 0; i < data[month].length; i++) {
+        for (int i = 0; i < data[month].length; i++) { // среднее количество шагов
             averageSteps = sumSteps / data[month].length;
         }
         System.out.println("--- среднее количество шагов в день за текущий месяц: " + averageSteps);
