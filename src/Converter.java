@@ -4,11 +4,11 @@ public class Converter {
 
     void getDistance(int steps) {
         double distance = stepLength * steps / 1000;
-        System.out.println("Пройденная дистанция в километрах: " + distance);
+        System.out.println("--- пройденная дистанция в километрах: " + distance + " км.");
     }
 
     void getCcal(int steps) {
         double energy = stepCcal * steps;
-        System.out.println("Количество сожженых килокалорий: " + energy);
+        System.out.println("--- количество сожженых килокалорий: " + energy + " ккал.");
     }
 }

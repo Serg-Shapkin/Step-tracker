@@ -3,47 +3,52 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        printMenu();
         StepTracker stepTracker = new StepTracker();
 
         while(true) {
+            printMenu();
             int userInput = scanner.nextInt();
             if (userInput == 1) {
                 System.out.println("Введите номер месяца, где:");
-                System.out.println("0 - Январь; 1 - Февраль; 2 - Март; 3 - Апрель; 4 - Май; " +
-                        "5 - Июнь;\n6 - Июль; 7 - Август; 8 - Сентябрь; 9 - Октябрь; 10 - Ноябрь; 11 - Декабрь;");
-                int monthNumber = scanner.nextInt();
-                System.out.println("Введите номер дня от 1 до 30:");
+                System.out.println("1 - Январь; 2 - Февраль; 3 - Март; 4 - Апрель; 5 - Май; " +
+                        "6 - Июнь;\n7 - Июль; 8 - Август; 9 - Сентябрь; 10 - Октябрь; 11 - Ноябрь; 12 - Декабрь;");
+
+                int monthNumber = scanner.nextInt() - 1;
+                System.out.println("Введите номер дня от 1 до 30 (включительно):");
+
                 int dayNumber = scanner.nextInt();
                 System.out.println("Введите количество пройденных шагов:");
+
                 int numberOfSteps = scanner.nextInt();
+
                 stepTracker.saveSteps(monthNumber, dayNumber, numberOfSteps);
-                printMenu();
+
             } else if(userInput == 2) {
                 System.out.println("Введите номер месяца, за который хотете получить данные, где:");
-                System.out.println("0 - Январь; 1 - Февраль; 2 - Март; 3 - Апрель; 4 - Май; " +
-                        "5 - Июнь;\n6 - Июль; 7 - Август; 8 - Сентябрь; 9 - Октябрь; 10 - Ноябрь; 11 - Декабрь;");
-                int monthForStatistics = scanner.nextInt();
+                System.out.println("1 - Январь; 2 - Февраль; 3 - Март; 4 - Апрель; 5 - Май; " +
+                        "6 - Июнь;\n7 - Июль; 8 - Август; 9 - Сентябрь; 10 - Октябрь; 11 - Ноябрь; 12 - Декабрь;");
+
+                int monthForStatistics = scanner.nextInt() - 1;
                 stepTracker.getStatistics(monthForStatistics);
-                printMenu();
+
             } else if (userInput == 3) {
                 System.out.println("Введите новую цель по количеству шагов в день: ");
                 int target = scanner.nextInt();
                 stepTracker.changeTargets(target);
-                printMenu();
             } else if (userInput == 4) {
-                System.out.println("Выход из приложения");
-                break;
+                System.out.println("Будем ждать вас снова. До свидания!");
+                scanner.close();
+                return;
             } else {
-                System.out.println("Такой команды нет, введите команду из списка:");
-                printMenu();
+                System.out.println("Такой команды нет. Пожалуйста, введите команду от 1 до 4");
             }
         }
     }
     public static void printMenu() {
-        System.out.println("1 - Ввести количество шагов за определенный день");
-        System.out.println("2 - Напечатать статистику за определенный месяц");
-        System.out.println("3 - Изменить цель по количеству шагов в день");
-        System.out.println("4 - Выход");
+        System.out.println("\nЧто необходимо сделать?\nУкажите номер команды из меню:");
+        System.out.println("1 - ввести количество шагов за определенный день");
+        System.out.println("2 - напечатать статистику за определенный месяц");
+        System.out.println("3 - изменить цель по количеству шагов в день");
+        System.out.println("4 - выйти из приложения");
     }
 }
