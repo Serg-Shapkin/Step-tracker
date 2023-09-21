@@ -13,22 +13,17 @@ public class Main {
                 System.out.println("1 - Январь; 2 - Февраль; 3 - Март; 4 - Апрель; 5 - Май; " +
                         "6 - Июнь;\n7 - Июль; 8 - Август; 9 - Сентябрь; 10 - Октябрь; 11 - Ноябрь; 12 - Декабрь;");
                 int monthNumber = scanner.nextInt() - 1;
-
                 System.out.println("Введите номер дня от 1 до 30 (включительно):");
                 int dayNumber = scanner.nextInt();
-
                 System.out.println("Введите количество пройденных шагов:");
                 int numberOfSteps = scanner.nextInt();
-
                 stepTracker.saveSteps(monthNumber, dayNumber, numberOfSteps);
             } else if(userInput == 2) {
                 System.out.println("Введите номер месяца, за который хотете получить данные, где:");
                 System.out.println("1 - Январь; 2 - Февраль; 3 - Март; 4 - Апрель; 5 - Май; " +
                         "6 - Июнь;\n7 - Июль; 8 - Август; 9 - Сентябрь; 10 - Октябрь; 11 - Ноябрь; 12 - Декабрь;");
-
                 int monthForStatistics = scanner.nextInt() - 1;
                 stepTracker.getStatistics(monthForStatistics);
-
             } else if (userInput == 3) {
                 System.out.println("Введите новую цель по количеству шагов в день: ");
                 int target = scanner.nextInt();
